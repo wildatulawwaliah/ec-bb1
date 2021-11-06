@@ -1,0 +1,22 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+$route['home'] = 'u/home';
+$route['home/load_barang'] = 'u/home/load_barang';
+$route['home/detail/(:any)'] = 'u/home/detail';
+$route['sign_in'] = 'u/sign_in';
+$route['sign_in/cek'] = 'u/sign_in/cek';
+$route['create_account'] = 'u/create_account';
+$route['create_account/simpan'] = 'u/create_account/simpan';
+$route['create_account/cek_username'] = 'u/create_account/cek_username';
+$route['profile'] = 'u/profile';
+$route['profile/pembayaran'] = 'u/profile/pembayaran';
+$route['profile/pemesanan'] = 'u/profile/pemesanan';
+$route['profile/beli'] = 'u/profile/beli';
+$route['profile/beli_quick'] = 'u/profile/beli_quick';
+$route['profile/simpan_keranjang'] = 'u/profile/simpan_keranjang';
+$route['profile/hapus_keranjang'] = 'u/profile/hapus_keranjang';
+$route['profile/sign_out'] = 'u/profile/sign_out';
+$route['profile/update_data'] = 'u/profile/update_data';
+$route['profile/update_password'] = 'u/profile/update_password';
+$route['profile/bayar'] = 'u/profile/bayar';
+$route['profile/cetak_pembelian'] = 'u/profile/cetak_pembelian';
