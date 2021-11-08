@@ -30,7 +30,7 @@
               <select class="form-control" id="kategori" name="kategori" required>
                 <option value="" >Pilih kategori Vendor</option>
                 <?php
-                $qk=$this->db->get('kategori');
+                $qk=$this->db->get_where('kategori', ['id_user' => $this->session->userdata('id_user')]);
                 foreach($qk->result() as $dt):
                 echo '<option value="'.$dt->kode_kategori.'">'.$dt->kategori.'</option>';
                 endforeach;

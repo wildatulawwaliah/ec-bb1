@@ -15,7 +15,20 @@ class A_data_pesanan extends CI_Controller {
 						$d['content']='data_pesanan/view';
 						$d['data']=$this->db->get('pembelian');
 						$this->load->view('a_home',$d);
-				}else {
+				}
+				elseif( $cek=='login' && $level=='v') {
+					$d['title'] ='Data Pesanan';
+					$d['content']='data_pesanan/view';
+					$this->db->from('pembelian');
+					$this->db->join('pembelian_detail', 'pembelian_detail.no_transaksi = pembelian.no_transaksi');
+					$this->db->join('barang', 'pembelian_detail.kode_barang = barang.kode_barang');
+					$this->db->join('kategori', 'kategori.kode_kategori = barang.kode_kategori');
+					$this->db->where(['kategori.id_user' => $this->session->userdata('id_user')]);
+					$this->db->group_by('pembelian.no_transaksi');
+					$d['data'] = $this->db->get();
+					$this->load->view('a_home',$d);
+				}
+				else {
 					  $this->session->set_flashdata('f_error','Invalid Username or Password');
 					  redirect('a_login/logout');
 				}

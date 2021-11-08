@@ -1,11 +1,13 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
   <div class="x_panel">
-    <div class="x_title">
+    <?php if ($this->session->userdata('level') == 'v') : ?>
+      <div class="x_title">
       <span class="nav navbar-right panel_toolbox">
         <button type="button" class="btn btn-success btn-m" id="tambah"><i class="fa fa-plus"></i> Tambah</button>
       </span>
       <div class="clearfix"></div>
     </div>
+  <?php endif ?>
     <div class="x_content">
       <table id="table_barang" class="table table-striped dtable table-bordered">
         <thead>
@@ -37,11 +39,19 @@
               echo '<td class="center">'.$d->diskon.'%</td>';
               echo '<td class="center">'.$d->satuan.'</td>';
               echo '<td class="center"><img src="'.base_url().'assets/img/barang/'.$gambar.'" height="100px" width="100px"></img></td>';
-              echo '<td class="center"><center>
-																<a class="edit" data-id="'.$d->kode_barang.'"><i class="fa fa-edit green"></i></a>
-																<a class="hapus" data-id="'.$d->kode_barang.'"><i class="fa fa-trash red"></i></a>
-														</center>
+              if ($this->session->userdata('level') == 'a') {
+                echo '<td class="center"><center>
+                                <a class="hapus" data-id="'.$d->kode_barang.'"><i class="fa fa-trash red"></i></a>
+                            </center>
                     </td>';
+              }
+              else {
+                echo '<td class="center"><center>
+                                <a class="edit" data-id="'.$d->kode_barang.'"><i class="fa fa-edit green"></i></a>
+                                <a class="hapus" data-id="'.$d->kode_barang.'"><i class="fa fa-trash red"></i></a>
+                            </center>
+                    </td>';
+              }
               echo '</tr>';
             }
           ?>

@@ -12,12 +12,13 @@ class a_data_barang extends CI_Controller {
 				error_reporting(0);
 				$cek=$this->session->userdata('status');
 				$level=$this->session->userdata('level');
-				if($cek=='login' && $level=='a'){
-						$d['title'] ='Data Produk';
-						$d['content']='data_barang/view';
-						$d['data']=$this->m_barang->all();
-						$this->load->view('a_home',$d);
-				}else {
+				if($cek=='login' && ($level=='a' || $level == 'v')){
+					$d['title'] ='Data Produk';
+					$d['content']='data_barang/view';
+					$d['data']=$this->m_barang->all($level == 'v' ? $this->session->userdata('id_user') : null);
+					$this->load->view('a_home',$d);
+				}
+				else {
 					  $this->session->set_flashdata('f_error','Invalid Username or Password');
 					  redirect('a_login/logout');
 				}
@@ -41,7 +42,7 @@ class a_data_barang extends CI_Controller {
 				{
 					$cek=$this->session->userdata('status');
 					$level=$this->session->userdata('level');
-					if($cek=='login' && $level=='a'){
+					if($cek=='login' && $level=='v'){
 							$d['title']='Tambah Barang';
 							$d['kode_barang']=$this->create_kode();
 							$d['content']='data_barang/add';
@@ -56,7 +57,7 @@ class a_data_barang extends CI_Controller {
 					{
 						$cek=$this->session->userdata('status');
 						$level=$this->session->userdata('level');
-						if($cek=='login' && $level=='a'){
+						if($cek=='login' && $level=='v'){
 								$d['title']='Edit Barang';
 								$d['kode_barang']=$this->input->get('kode_barang');
 								$d['content']='data_barang/edit';
@@ -71,7 +72,7 @@ class a_data_barang extends CI_Controller {
 				{
 					$cek=$this->session->userdata('status');
 					$level=$this->session->userdata('level');
-					if($cek=='login' && $level=='a'){
+					if($cek=='login' && $level=='v'){
 								$id['kode_barang'] = $this->input->post('kode');
 								$q=$this->db->get_where('barang',$id);
 								$row=$q->num_rows();
@@ -105,7 +106,7 @@ class a_data_barang extends CI_Controller {
 				{
 					$cek=$this->session->userdata('status');
 					$level=$this->session->userdata('level');
-					if($cek=='login' && $level=='a'){
+					if($cek=='login' && $level=='v'){
 						    error_reporting(0);
 								$kode_barang=$this->input->post('kode_barang');
 								$id['kode_barang'] = $kode_barang;
@@ -187,7 +188,7 @@ class a_data_barang extends CI_Controller {
 							error_reporting(0);
 							$cek=$this->session->userdata('status');
 							$level=$this->session->userdata('level');
-							if($cek=='login' && $level=='a'){
+							if($cek=='login' && ($level=='v' || $level=='a')){
 										$id['kode_barang'] = $this->input->post('kode');
 										$qg=$this->db->select('image')->get_where('barang_image',$id);
 										foreach ($qg->result() as $dg) {
@@ -209,7 +210,7 @@ class a_data_barang extends CI_Controller {
 								error_reporting(0);
 								$cek=$this->session->userdata('status');
 								$level=$this->session->userdata('level');
-								if($cek=='login' && $level=='a'){
+								if($cek=='login' && $level=='v'){
 											$id['id'] = $this->input->post('id');
 											$gambar=$this->db->select('image')->get_where('barang_image',$id)->row()->image;
 											$file='assets/img/barang/'.$gambar;

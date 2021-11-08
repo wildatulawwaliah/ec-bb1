@@ -11,12 +11,13 @@ class A_data_kategori extends CI_Controller {
 			{
 				$cek=$this->session->userdata('status');
 				$level=$this->session->userdata('level');
-				if($cek=='login' && $level=='a'){
-						$d['title'] ='Data Kategori';
-						$d['content']='data_kategori/view';
-						$d['data']=$this->m_kategori->all();
-						$this->load->view('a_home',$d);
-				}else {
+				if($cek=='login' && ($level=='a' || $level == 'v')){
+					$d['title'] ='Data Kategori';
+					$d['content']='data_kategori/view';
+					$d['data']=$this->m_kategori->all($level == 'v' ? $this->session->userdata('id_user') : null);
+					$this->load->view('a_home',$d);
+				}
+				else {
 					  $this->session->set_flashdata('f_error','Invalid Username or Password');
 					  redirect('a_login/logout');
 				}
@@ -39,7 +40,7 @@ class A_data_kategori extends CI_Controller {
 				{
 					$cek=$this->session->userdata('status');
 					$level=$this->session->userdata('level');
-					if($cek=='login' && $level=='a'){
+					if($cek=='login' && $level=='v'){
 							$d['kode_kategori']=$this->buat_kode();
 							echo json_encode($d);
 					}else {
@@ -52,7 +53,7 @@ class A_data_kategori extends CI_Controller {
 				{
 					$cek=$this->session->userdata('status');
 					$level=$this->session->userdata('level');
-					if($cek=='login' && $level=='a'){
+					if($cek=='login' && $level=='v'){
 								$id['kode_kategori'] = $this->input->post('kode');
 
 								$q=$this->db->get_where('kategori',$id);
@@ -77,7 +78,7 @@ class A_data_kategori extends CI_Controller {
 				{
 					$cek=$this->session->userdata('status');
 					$level=$this->session->userdata('level');
-					if($cek=='login' && $level=='a'){
+					if($cek=='login' && $level=='v'){
 						    date_default_timezone_set('Asia/Makassar');
 								$id['kode_kategori'] = $this->input->post('kode');
 								$dt['kode_kategori'] = $this->input->post('kode');
@@ -104,7 +105,7 @@ class A_data_kategori extends CI_Controller {
 						{
 							$cek=$this->session->userdata('status');
 							$level=$this->session->userdata('level');
-							if($cek=='login' && $level=='a'){
+							if($cek=='login' && ($level=='v' || $level=='a')){
 										$id['kode_kategori'] = $this->input->post('kode');
 										$this->db->delete('kategori',$id);
 										echo "Data Sukses Dihapus";

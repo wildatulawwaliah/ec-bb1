@@ -4,6 +4,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['a_login'] = 'a/a_login';
 $route['a_login/cek_login'] = 'a/a_login/cek_login';
 $route['a_login/logout'] = 'a/a_login/logout';
+$route['registrasi'] = 'a/a_login/registrasi';
+$route['reg-vendor'] = 'a/a_login/reg_vendor';
+$route['change-status/(:num)'] = 'a/a_data_admin/change_status/$1';
 /*End Login*/
 
 /*Home*/

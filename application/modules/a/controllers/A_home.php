@@ -15,7 +15,13 @@ class A_home extends CI_Controller {
 			$d['title'] ='Dashboard';
 			$d['content']='a_dashboard';
 			$this->load->view('a_home',$d);
-		}else {
+		}
+		elseif($cek=='login' && $level=='v') {
+			$d['title'] ='Dashboard';
+			$d['content']='dashboard-vendor';
+			$this->load->view('a_home',$d);
+		}
+		else {
 			$this->session->set_flashdata('f_error','Invalid Username or Password');
 			redirect('a_login');
 		}

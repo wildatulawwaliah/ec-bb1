@@ -3,7 +3,7 @@
     <div class="x_title">
       <span class="nav navbar-right panel_toolbox">
         <?php
-        $cek_publish=$this->db->get_where('stok_awal',array('publish' => '0'))->num_rows();
+        $cek_publish=$this->db->get_where('stok_awal',array('publish' => '0', 'id_user' => $this->session->userdata('id_user')))->num_rows();
         if($cek_publish!=0){
             $disabled='';
         }
@@ -11,8 +11,10 @@
             $disabled='disabled';
         }
         ?>
+        <?php if($this->session->userdata('level') == 'v') : ?>
         <button type="button" class="btn btn-warning btn-m" id="publish" <?php echo $disabled;?>><i class="fa fa-upload"></i> Publish</button>
         <button type="button" class="btn btn-success btn-m" id="tambah"><i class="fa fa-plus"></i> Tambah</button>
+      <?php endif ?>
     </span>
     <div class="clearfix"></div>
 </div>

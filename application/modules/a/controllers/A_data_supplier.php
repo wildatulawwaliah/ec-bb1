@@ -106,7 +106,12 @@ class A_data_supplier extends CI_Controller {
 							$level=$this->session->userdata('level');
 							if($cek=='login' && $level=='a'){
 										$id['kode_supplier'] = $this->input->post('kode');
-										$this->db->delete('supplier',$id);
+										$sup = $this->db->get_where('supplier', $id)->row();
+										if (!is_null($sup)) {
+											$this->db->update('users', ['aktif' => 0], ['id_user' => $sup->id_user]);
+										}
+										// $this->db->get_where('users', ['aktif' => 0]);
+										// $this->db->delete('supplier',$id);
 										echo "Data Sukses Dihapus";
 							}else {
 								  redirect('a_login/logout');

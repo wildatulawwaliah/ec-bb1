@@ -12,12 +12,13 @@ class a_data_stok_awal extends CI_Controller {
 				// error_reporting(0);
 		$cek=$this->session->userdata('status');
 		$level=$this->session->userdata('level');
-		if($cek=='login' && $level=='a'){
+		if($cek=='login' && ($level=='a' || $level == 'v')){
 			$d['title'] ='Data Stok Awal';
 			$d['content']='data_stok_awal/view';
-			$d['data']=$this->m_stok_awal->all();
+			$d['data']=$this->m_stok_awal->all($level == 'v' ? $this->session->userdata('id_user') : NULL);
 			$this->load->view('a_home',$d);
-		}else {
+		}
+		else {
 			$this->session->set_flashdata('f_error','Invalid Username or Password');
 			redirect('a_login/logout');
 		}

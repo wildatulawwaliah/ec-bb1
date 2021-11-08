@@ -12,7 +12,7 @@ class a_laporan_stok extends CI_Controller {
 			{
 				$cek=$this->session->userdata('status');
 				$level=$this->session->userdata('level');
-				if($cek=='login' && $level=='a'){
+				if($cek=='login' && ($level=='a' || $level == 'v')) {
 					$nama_toko=$this->db->select('nama_toko')->where('id','system')->get('setting')->row()->nama_toko;
 					$motto=$this->db->select('motto')->where('id','system')->get('setting')->row()->motto;
 					$pdf = new FPDF('p','mm','A4');
@@ -40,7 +40,7 @@ class a_laporan_stok extends CI_Controller {
 
 					$pdf->SetFont('Arial','',10);
 
-					$stok = $this->m_stok->all()->result();
+					$stok = $this->m_stok->all($level == 'v' ? $this->session->userdata('id_user') : NULL)->result();
 					foreach ($stok as $dt){
 							$pdf->Cell(25,6,$dt->kode_barang,1,0,'C');
 							$pdf->Cell(80,6,$dt->nama_barang,1,0);

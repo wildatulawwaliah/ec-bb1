@@ -97,6 +97,16 @@ class A_data_admin extends CI_Controller {
 
 						}
 
+		public function change_status($id)
+		{
+			$data = $this->db->get_where('users', ['id_user' => $id])->row();
+			if (!is_null($data)) {
+				$status = $data->aktif == 1 ? 0 : 1;
+				$this->db->update('users', ['aktif' => $status], ['id_user' => $id]);
+			}
+			redirect('a_data_admin');
+		}
+
 	}
 
 	?>

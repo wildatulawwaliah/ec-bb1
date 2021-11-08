@@ -25,11 +25,11 @@
               echo '<td class="center">'.$d->kode_supplier.'</td>';
               echo '<td class="center">'.$d->supplier.'</td>';
               echo '<td class="center"><center>
-																<a data-toggle="modal" class="edit" data-target="#modal-tambah" data-id="'.$d->kode_supplier.'"><i class="fa fa-edit green"></i></a>
 																<a class="hapus" data-id="'.$d->kode_supplier.'"><i class="fa fa-trash red"></i></a>
 														</center>
                     </td>';
               echo '</tr>';
+              // <a data-toggle="modal" class="edit" data-target="#modal-tambah" data-id="'.$d->kode_supplier.'"><i class="fa fa-edit green"></i></a>
             }
           ?>
         </tbody>

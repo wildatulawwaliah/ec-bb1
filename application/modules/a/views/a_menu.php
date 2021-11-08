@@ -9,7 +9,9 @@
         <ul class="nav child_menu">
           <li><a href="<?php echo base_url();?>a_data_barang">Data Produk</a></li>
           <li><a href="<?php echo base_url();?>a_data_kategori">Data Kategori Vendor</a></li>
-          <li><a href="<?php echo base_url();?>a_data_vendor">Data Vendor</a></li>
+          <?php if ($this->session->userdata('level') == 'a') : ?>
+            <li><a href="<?php echo base_url();?>a_data_vendor">Data Vendor</a></li>
+          <?php endif ?>
           <!-- <li><a href="<?php echo base_url();?>a_data_bank">Data Bank</a></li> -->
         </ul>
       </li>
@@ -24,14 +26,16 @@
       <!-- </li>
       <li><a href="<?php echo base_url();?>a_laporan_penjualan"><i class="fa fa-print"></i>Laporan Penjualan</a>
       </li> -->
-      <li><a href="<?php echo base_url();?>a_data_users"><i class="fa fa-users"></i>Data Users</a>
-      </li>
-      <li><a href="<?php echo base_url();?>a_data_admin"><i class="fa fa-user"></i>Data Admin</a>
-      </li>
-      <li><a href="<?php echo base_url();?>a_data_setting"><i class="fa fa-gears"></i>Setting</a>
-      </li>
+      <?php if($this->session->userdata('level') == 'a') : ?>
+        <li><a href="<?php echo base_url();?>a_data_users"><i class="fa fa-users"></i>Data Users</a>
+        </li>
+        <li><a href="<?php echo base_url();?>a_data_admin"><i class="fa fa-user"></i>Data Admin</a>
+        </li>
+        <li><a href="<?php echo base_url();?>a_data_setting"><i class="fa fa-gears"></i>Setting</a>
+        </li>
+      <?php endif ?>
       <li><a href="<?php echo base_url();?>a_login/logout"><i class="fa fa-sign-out"></i>Log Out</a>
-      </li>
+        </li>
     </ul>
   </div>
 

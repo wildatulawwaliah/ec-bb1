@@ -4,12 +4,14 @@
 </style>
 <div class="col-md-12 col-sm-12 col-xs-12">
   <div class="x_panel">
-    <div class="x_title">
+    <?php if($this->session->userdata('level') == 'v') : ?>
+      <div class="x_title">
       <span class="nav navbar-right panel_toolbox">
         <button type="button" class="btn btn-success btn-m" id="tambah" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i> Tambah</button>
       </span>
       <div class="clearfix"></div>
     </div>
+    <?php endif ?>
     <div class="x_content">
       <table id="table_stok_masuk" class="table table-striped dtable table-bordered">
         <thead>

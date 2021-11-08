@@ -31,6 +31,7 @@
               echo '<td class="center">'.$d->nama_lengkap.'</td>';
               echo '<td class="center">'.$aktif.'</td>';
               echo '<td class="center"><center>
+                                <a href="'.base_url('change-status/'.$d->id_user).'"><i class="fa fa-recycle warning"></i></a>
 																<a class="hapus" data-id="'.$d->id_user.'"><i class="fa fa-trash red"></i></a>
 														</center>
                     </td>';

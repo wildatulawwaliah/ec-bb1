@@ -12,12 +12,13 @@ class a_data_stok extends CI_Controller {
 				error_reporting(0);
 				$cek=$this->session->userdata('status');
 				$level=$this->session->userdata('level');
-				if($cek=='login' && $level=='a'){
+				if($cek=='login' && ($level=='a' || $level == 'v')){
 						$d['title'] ='Data Stok';
 						$d['content']='data_stok/view';
-						$d['data']=$this->m_stok->all();
+						$d['data']=$this->m_stok->all($level == 'v' ? $this->session->userdata('id_user') : null);
 						$this->load->view('a_home',$d);
-				}else {
+				}
+				else {
 					  $this->session->set_flashdata('f_error','Invalid Username or Password');
 					  redirect('a_login/logout');
 				}

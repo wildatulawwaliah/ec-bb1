@@ -13,12 +13,13 @@ class A_data_stok_masuk extends CI_Controller {
 				error_reporting(0);
 				$cek=$this->session->userdata('status');
 				$level=$this->session->userdata('level');
-				if($cek=='login' && $level=='a'){
+				if($cek=='login' && ($level=='a' || $level == 'v')){
 						$d['title'] ='Data Stok Masuk';
 						$d['content']='data_stok_masuk/view';
-						$d['data']=$this->m_stok_masuk->all();
+						$d['data']=$this->m_stok_masuk->all($level == 'v' ? $this->session->userdata('id_user') : null);
 						$this->load->view('a_home',$d);
-				}else {
+				}
+				else {
 					  $this->session->set_flashdata('f_error','Invalid Username or Password');
 					  redirect('a_login/logout');
 				}
@@ -107,7 +108,7 @@ class A_data_stok_masuk extends CI_Controller {
 						{
 							$cek=$this->session->userdata('status');
 							$level=$this->session->userdata('level');
-							if($cek=='login' && $level=='a'){
+							if($cek=='login' && ($level=='a' || $level=='v')){
 										$id['id'] = $this->input->post('id');
 										$this->db->delete('stok_masuk',$id);
 										echo "Data Sukses Dihapus";
