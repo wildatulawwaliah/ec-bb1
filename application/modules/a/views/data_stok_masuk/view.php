@@ -92,7 +92,7 @@
                     <input type="text" id="kategori" name="kategori"  class="form-control col-md-7 col-xs-12" required readonly />
                   </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label class="control-label col-md-5 col-sm-5 col-xs-12 left" for="id">Supplier <span class="required">*</span>
                   </label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
@@ -106,7 +106,7 @@
                         ?>
                       </select>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group">
                     <label class="control-label col-md-5 col-sm-5 col-xs-12 left" for="id">Jumlah <span class="required">*</span>
                     </label>

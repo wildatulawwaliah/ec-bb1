@@ -54,7 +54,7 @@ class a_data_stok_awal extends CI_Controller {
 	{
 		$cek=$this->session->userdata('status');
 		$level=$this->session->userdata('level');
-		if($cek=='login' && $level=='a'){
+		if($cek=='login' && $level=='v'){
 			$d['title']='Tambah Data Stok Awal';
 			$d['id_ba']=$this->create_id();
 			$d['content']='data_stok_awal/add';
@@ -69,7 +69,7 @@ class a_data_stok_awal extends CI_Controller {
 	{
 		$cek=$this->session->userdata('status');
 		$level=$this->session->userdata('level');
-		if($cek=='login' && $level=='a'){
+		if($cek=='login' && $level=='v'){
 			$d['title']='Edit Data Stok Awal';
 			$d['id_ba']=$this->input->get('id_ba');
 			$d['content']='data_stok_awal/edit';
@@ -85,7 +85,7 @@ class a_data_stok_awal extends CI_Controller {
 	{
 		$cek=$this->session->userdata('status');
 		$level=$this->session->userdata('level');
-		if($cek=='login' && $level=='a'){
+		if($cek=='login' && $level=='v'){
 			$id['id_ba'] = $this->input->post('id_ba');
 			$q=$this->db->get_where('barang_awal',$id);
 			$row=$q->num_rows();
@@ -132,7 +132,7 @@ class a_data_stok_awal extends CI_Controller {
 	{
 		$cek=$this->session->userdata('status');
 		$level=$this->session->userdata('level');
-		if($cek=='login' && $level=='a'){
+		if($cek=='login' && $level=='v'){
 			date_default_timezone_set('Asia/Makassar');
 			error_reporting(0);
 			$id_ba=$this->input->post('id_ba');
@@ -148,7 +148,8 @@ class a_data_stok_awal extends CI_Controller {
 
 			$dsa['id_ba'] = $id_ba;
 			$dsa['stok_awal'] = $this->input->post('stok');
-			$dsa['kode_supplier'] = $this->input->post('supplier');
+			$dsa['kode_supplier'] = $this->db->get_where('supplier', ['id_user' => $this->session->userdata('id_user')])->row()->kode_supplier;
+			// $dsa['kode_supplier'] = $this->input->post('supplier');
 			$dsa['id_user'] = $this->session->userdata('id_user');
 
 
@@ -223,7 +224,7 @@ class a_data_stok_awal extends CI_Controller {
 		error_reporting(0);
 		$cek=$this->session->userdata('status');
 		$level=$this->session->userdata('level');
-		if($cek=='login' && $level=='a'){
+		if($cek=='login' && $level=='v'){
 			$id['id_ba'] = $this->input->post('id_ba');
 			$qg=$this->db->select('image')->get_where('barang_image_awal',$id);
 			foreach ($qg->result() as $dg) {
@@ -246,7 +247,7 @@ class a_data_stok_awal extends CI_Controller {
 		error_reporting(0);
 		$cek=$this->session->userdata('status');
 		$level=$this->session->userdata('level');
-		if($cek=='login' && $level=='a'){
+		if($cek=='login' && $level=='v'){
 			$id['id'] = $this->input->post('id');
 			$gambar=$this->db->select('image')->get_where('barang_image_awal',$id)->row()->image;
 			$file='assets/img/barang/'.$gambar;
@@ -263,7 +264,7 @@ class a_data_stok_awal extends CI_Controller {
 	{
 		$cek=$this->session->userdata('status');
 		$level=$this->session->userdata('level');
-		if($cek=='login' && $level=='a'){
+		if($cek=='login' && $level=='v'){
 			$id_user=$this->session->userdata('id_user');
 			$q_sa=$this->db->select('*')->get_where('stok_awal', ['publish' => "0"]);
 			$row=$q_sa->num_rows();

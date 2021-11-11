@@ -30,7 +30,7 @@
               <select class="form-control" id="kategori" name="kategori" required>
                 <option value="" >Pilih kategori</option>
                 <?php
-                $qk=$this->db->get('kategori');
+                $qk=$this->db->get_where('kategori', ['id_user' => $this->session->userdata('id_user')]);
                 foreach($qk->result() as $dt):
                 echo '<option value="'.$dt->kode_kategori.'">'.$dt->kategori.'</option>';
                 endforeach;
@@ -38,7 +38,7 @@
               </select>
             </div>
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
               <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Supplier</label>
               <div class="col-md-6 col-sm-6 col-xs-12">
                 <select class="form-control" id="supplier" name="supplier" >
@@ -51,7 +51,7 @@
                   ?>
                 </select>
               </div>
-            </div>
+            </div> -->
           <div class="form-group">
             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="pengarang">Harga Pokok (Rp.) <span class="required">*</span>
             </label>

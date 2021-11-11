@@ -30,7 +30,7 @@ class A_data_stok_masuk extends CI_Controller {
 				{
 					$cek=$this->session->userdata('status');
 					$level=$this->session->userdata('level');
-					if($cek=='login' && $level=='a'){
+					if($cek=='login' && $level=='v'){
 								$id['id'] = $this->input->post('id');
 
 								$q=$this->db->get_where('stok_masuk',$id);
@@ -80,11 +80,11 @@ class A_data_stok_masuk extends CI_Controller {
 				{
 					$cek=$this->session->userdata('status');
 					$level=$this->session->userdata('level');
-					if($cek=='login' && $level=='a'){
+					if($cek=='login' && $level=='v'){
 						    date_default_timezone_set('Asia/Makassar');
 								$id['id'] = $this->input->post('id');
 								$dt['kode_barang'] = $this->input->post('kode_barang');
-								$dt['kode_supplier'] = $this->input->post('supplier');
+								$dt['kode_supplier'] = $this->db->get_where('supplier', ['id_user' => $this->session->userdata('id_user')])->row()->kode_supplier;
 								$dt['jumlah'] = $this->input->post('jumlah');
 								$dt['id_user'] = $this->session->userdata('id_user');
 								$q=$this->db->get_where('stok_masuk',$id)->num_rows();
@@ -108,7 +108,7 @@ class A_data_stok_masuk extends CI_Controller {
 						{
 							$cek=$this->session->userdata('status');
 							$level=$this->session->userdata('level');
-							if($cek=='login' && ($level=='a' || $level=='v')){
+							if($cek=='login' && $level=='v'){
 										$id['id'] = $this->input->post('id');
 										$this->db->delete('stok_masuk',$id);
 										echo "Data Sukses Dihapus";
